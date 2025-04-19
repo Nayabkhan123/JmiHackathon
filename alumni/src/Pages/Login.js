@@ -57,7 +57,7 @@ export const Login = () => {
     console.log(data);
   return (
     <section id='login' className='flex items-center h-[100%] justify-center'>
-            <div className='w-[80%] h-screen hidden lg:flex'>
+            <div className='w-[80%] h-full hidden lg:flex'>
                 <img src={banner}
                     className=''/>
             </div>

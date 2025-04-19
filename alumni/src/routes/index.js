@@ -4,6 +4,7 @@ import { Home } from "../Pages/Home";
 import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
 import { AlumniDirectory } from "../Pages/AlumniDirectory";
+import PostForm from "../Pages/PostForm";
 
 const router =createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router =createBrowserRouter([
         {
             path:"alumni-directory",
             element: <AlumniDirectory/>
+        },
+        {
+            path:"postForm",
+            element: <PostForm/>
         },
        ] 
     }

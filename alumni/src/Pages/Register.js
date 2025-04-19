@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import backendUrl from '../common';
-
+import registerBanner from '../assets/register.png'
 export const Register = () => {
     const Navigate = useNavigate();
         const [showPassword,setshowPassword] =useState(true);
@@ -66,6 +66,10 @@ export const Register = () => {
         // console.log(data);
   return (
     <section id='signup' className='flex items-center h-[100%] justify-center'>
+            <div className=' h-full hidden lg:flex'>
+                <img src={registerBanner}
+                    className='w-full'/>
+            </div>
             <div className='bg-gray-100 w-full max-w-lg flex flex-col py-6 rounded-2xl'>
                 <div className='h-20 w-24 my-9 mx-auto relative'>
                     <div>
@@ -84,21 +88,23 @@ export const Register = () => {
                 <form className='grid px-10 gap-2' onSubmit={(event)=>submitHandler(event)}>
                     <div>
                         <label htmlFor='name'>Name:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none ' 
+                        <div className="flex">
+                            <input className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.name===""? (" focus:border-red-500"):("focus:border-green-500")}`} 
                             type='text' 
                             name='name' 
                             value={data.name}
                             required
                             placeholder='Enter Your Name'
-                            onChange={(event)=>changeHandler(event)}/>
+                            onChange={(event)=>changeHandler(event)}
+                            />
+
                         </div>
                     </div>
 
                     <div>
                         <label htmlFor='email'>Email:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none ' 
+                        <div className='flex'>
+                            <input className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.email===""? (" focus:border-red-500"):("focus:border-green-500")}`}
                             type='email' 
                             name='email' 
                             value={data.email}
@@ -110,15 +116,15 @@ export const Register = () => {
                     
                     <div>
                         <label htmlFor='password'>Password:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none' 
+                        <div className='flex relative'>
+                            <input className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.password===""? (" focus:border-red-500"):("focus:border-green-500")}`}
                                 type={showPassword?"text":"password"} 
                                 name='password' 
                                 value={data.password}
                                 required
                                 placeholder='Enter Your Password'
                                 onChange={(event)=>changeHandler(event)}/>
-                            <span className='text-xl cursor-pointer' onClick={()=>setshowPassword(!showPassword)}>
+                            <span className='text-xl cursor-pointer absolute right-2 top-3' onClick={()=>setshowPassword(!showPassword)}>
                                 {
                                     showPassword?(<FaEyeSlash/>):(<FaEye/>)
                                 }
@@ -128,15 +134,15 @@ export const Register = () => {
 
                     <div>
                         <label htmlFor='confirmPassword'>Confirm Password:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none' 
+                        <div className='flex relative'>
+                            <input className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.confirmPassword===""? (" focus:border-red-500"):("focus:border-green-500")}`} 
                                 type={showConfirmPassword?"text":"password"} 
                                 name='confirmPassword' 
                                 value={data.confirmPassword}
                                 required
                                 placeholder='Confirm Your Password'
                                 onChange={(event)=>changeHandler(event)}/>
-                            <span className='text-xl cursor-pointer' onClick={()=>setShowConfirmPassword(!showConfirmPassword)}>
+                            <span className='text-xl cursor-pointer absolute right-2 top-3' onClick={()=>setShowConfirmPassword(!showConfirmPassword)}>
                                 {
                                     showConfirmPassword?(<FaEyeSlash/>):(<FaEye/>)
                                 }
