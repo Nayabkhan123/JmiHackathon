@@ -1,89 +1,72 @@
-const userModel = require("../models/userModel")
+const userModel = require("../models/userModel");
 
-async function searchAlumni(req,res) {
-    try{
-        // const {inputData} = req.body 
-        // if(inputData===""){
-        //     const allAlumni = await userModel.find();
-        
-        //     res.json({
-        //         message:"All Alumni",
-        //         data:allAlumni,
-        //         success:true,
-        //         error:false
-        //     })
-        // }
-        // else{
-        //     const regex = new RegExp(inputData,'i','g')
-        //     const matchedAlumni = await userModel.find({
-        //         "$or":[
-        //             {
-        //                 name: regex
-        //             }
-        //         ]
-        //     })
-        //     res.status(200).json({
-        //         data:matchedAlumni,
-        //         error:false,
-        //         success:true,
-        //         message:"matchedAlumni Details"
-        //     }) 
-        // }
+async function searchAlumni(req, res) {
+    try {
+        const {
+            inputData = "",
+            filterOption = "",
+            sortOption = "",
+            sortOrder = ""
+        } = req.body;
 
+        const regex = new RegExp(inputData.trim(), "i");
 
+        let filterField;
+        switch (filterOption.toLowerCase()) {
+            case "batch":
+                filterField = "batch";
+                break;
+            case "branch":
+                filterField = "department";
+                break;
+            case "job-title":
+                filterField = "profession";
+                break;
+            case "location":
+                filterField = "location";
+                break;
+            default:
+                filterField = "name";
+                break;
+        }
 
-        const { inputData, filterOption } = req.body;
+        // Build search query
+        const query = inputData.trim()
+            ? { [filterField]: regex }
+            : {};
 
-        if (!inputData || inputData.trim() === "") {
-        const allAlumni = await userModel.find();
-        return res.status(200).json({
-            message: "All Alumni",
-            data: allAlumni,
+        // Build sort object
+        let sortQuery = {};
+        if (sortOption) {
+            const sortFieldMap = {
+                name: "name",
+                graduationYear: "batch",
+                profession: "profession",
+                location: "location"
+            };
+
+            const fieldToSort = sortFieldMap[sortOption] || "name";
+            sortQuery[fieldToSort] = sortOrder === "desc" ? -1 : 1;
+        }
+
+        const alumni = await userModel.find(query).sort(sortQuery);
+
+        res.status(200).json({
+            message: inputData.trim()
+                ? `Filtered by ${filterOption || "name"}`
+                : "All Alumni",
+            data: alumni,
             success: true,
             error: false,
         });
-        }
 
-        const regex = new RegExp(inputData, 'i');
-
-        let query = {};
-        switch (filterOption) {
-        case 'batch':
-            query.batchYear = regex;
-            break;
-
-        case 'branch':
-            query.branch = regex;
-            break;
-
-        case 'jobTitle':
-            query.jobTitle = regex;
-            break;
-
-        case 'location':
-            query.location = regex;
-            break;
-
-        default:
-            query.name = regex;
-            break;
-        }
-
-        const matchedAlumni = await userModel.find(query);
-
-        return res.status(200).json({
-        data: matchedAlumni,
-        success: true,
-        error: false,
-        message: `Filtered by ${filterOption}`,
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: true,
+            message: err.message || "Something went wrong",
         });
     }
-    catch(err){
-        res.status(400).json({
-            success:false,
-            error:true,
-            message:err.message || err
-        })
-    }
 }
-module.exports = searchAlumni
+
+module.exports = searchAlumni;

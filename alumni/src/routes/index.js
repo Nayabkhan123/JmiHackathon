@@ -5,6 +5,7 @@ import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
 import { AlumniDirectory } from "../Pages/AlumniDirectory";
 import PostForm from "../Pages/PostForm";
+import EditProfile from "../Pages/EditProfile";
 
 const router =createBrowserRouter([
     {
@@ -31,6 +32,11 @@ const router =createBrowserRouter([
             path:"postForm",
             element: <PostForm/>
         },
+        {
+            path:"edit-profile",
+            element: <EditProfile/>
+        },
+        
        ] 
     }
 ])

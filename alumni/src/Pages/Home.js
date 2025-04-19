@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar'
 export const Home = () => {
   return (
     <div>
-        <main className="px-4 pb-4 flex flex-col gap-8">
+        <main className="px-4 pb-4 flex flex-col gap-10">
             <Main/>
             <Directory />
             <TotalAlumni/>

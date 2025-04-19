@@ -1,5 +1,6 @@
 import React from 'react'
-import image from '../assets/image.png'
+// import image from '../assets/image.png'
+import image from '../assets/logo.jpg'
 export const Main = () => {
   return (
     <div className='h-[24rem] lg:h-[26rem] flex flex-col lg:flex-row w-full justify-evenly items-center'>
@@ -9,7 +10,7 @@ export const Main = () => {
       </div>
       <div>
         <img src={image}
-              className='w-[20rem] lg:w-[30rem] '/>
+              className='w-[20rem] lg:w-[30rem] mix-blend-darken'/>
       </div>
     </div>
   )

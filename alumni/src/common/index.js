@@ -25,6 +25,22 @@ const backendUrl = {
         url: `${backendDomain}/search-alumini`,
         method: "post"
     },
+    getAlumni:{
+        url: `${backendDomain}/all-alumni`,
+        method: "get"
+    },
+    updateProfile:{
+        url: `${backendDomain}/edit-profile`,
+        method: "put"
+    },
+    createPost:{
+        url: `${backendDomain}/create-post`,
+        method: "post"
+    },
+    otpVerify:{
+        url: `${backendDomain}/otpverify`,
+        method: "post"
+    },
     
 
 }

@@ -7,14 +7,22 @@ const currentUserDetail = require('../controllers/currentUserDetail')
 const authToken = require('../middlewares/auth')
 const userLogoutController = require('../controllers/logout')
 const searchAlumni = require('../controllers/searchAlumni')
+const allAlumni = require('../controllers/allAlumni')
+const editProfile = require('../controllers/editProfile')
+const verifyOtp = require('../controllers/otpController')
 
 
-router.post('/register',registerController)
+// router.post('/register',registerController)
+//test
+router.post("/register", registerController);
+router.post("/otpverify", verifyOtp);
+
 router.post('/login',userLoginController)
 router.get('/user-details',authToken,currentUserDetail)
 router.get('/logout',userLogoutController)
 router.post('/search-alumini',searchAlumni)
-
+router.get('/all-alumni',allAlumni)
+router.put('/edit-profile',authToken,editProfile)
 
 router.get('/all-posts', async (req, res) => {
     const posts = await Post.find().sort({ createdAt: -1 });
@@ -22,7 +30,7 @@ router.get('/all-posts', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/create-post', async (req, res) => {
     const newPost = new Post(req.body);
     const saved = await newPost.save();
     res.status(201).json(saved);

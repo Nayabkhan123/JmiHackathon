@@ -41,3 +41,6 @@ html {
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: #555;  /* darker thumb on hover */
 }
+.backgroundImage{
+  background-image: url('../src/assets/register.png');
+}

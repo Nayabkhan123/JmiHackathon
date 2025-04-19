@@ -4,6 +4,7 @@ import axios from 'axios';
 import { uploadImage } from '../helper.js/UploadImage';
 import {GrCloudUpload} from 'react-icons/gr'
 import {TiDelete} from 'react-icons/ti'
+import backendUrl from '../common';
 
 const PostForm = ({ onPostCreated }) => {
     const [formData, setFormData] = useState({
@@ -21,8 +22,17 @@ const PostForm = ({ onPostCreated }) => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-        const res = await axios.post('http://localhost:5000/api/posts', formData);
-        onPostCreated(res.data);
+        const apiresponse = await fetch(backendUrl.createPost.url,{
+            method:backendUrl.createPost.method,
+            credentials:`include`,
+            body: JSON.stringify(
+                {
+                    postData: formData
+                }
+            )
+        });
+        const apidata = await apiresponse.json()
+        // onPostCreated(apiresponse.data);
         setFormData({
             userName: '',
             userImage: '',
@@ -36,11 +46,8 @@ const PostForm = ({ onPostCreated }) => {
     };
     async function changeUploadHandler(e){
         const file = e.target.files;
-        console.log("working1")
         if(file.length){
             const uploadImageCloudinary = await uploadImage(file[0])
-            console.log("working2")
-
             setFormData((prev)=>{
                 return{
                     ...prev,
@@ -188,13 +195,13 @@ const PostForm = ({ onPostCreated }) => {
         </div>
       </form>
     {
-        setOpenZoomProductImage && 
-        <div className='w-screen h-full bg-[#ffffffa2] absolute top-0 bottom-0 right-0 left-0'>
-            <div className='flex items-center justify-center '>
-                <img src={formData.userImage} 
-                    className='w-80' />
-            </div>
-        </div>
+        // setOpenZoomProductImage && 
+        // <div className='w-screen h-full bg-[#ffffffa2] absolute top-0 bottom-0 right-0 left-0'>
+        //     <div className='flex items-center justify-center '>
+        //         <img src={formData.userImage} 
+        //             className='w-80' />
+        //     </div>
+        // </div>
     }
     </div>
 
