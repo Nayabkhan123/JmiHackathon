@@ -35,7 +35,7 @@ The project consists of two main parts:
 - Backend:
   - Node.js
   - Express.js
-  - MongoDB (assumed from dbConnect usage)
+  - MongoDB 
   - Middleware for authentication and session management
 
 ## Installation and Setup
