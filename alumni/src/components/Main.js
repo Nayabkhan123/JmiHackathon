@@ -3,7 +3,7 @@ import image from '../assets/logobgr.png';
 
 export const Main = () => {
   return (
-    <div className="bg-white text-white h-[24rem] lg:h-[26rem] flex flex-col lg:flex-row w-full justify-evenly items-center px-4 md:px-12">
+    <div className="bg-gray-300 text-white h-[24rem] lg:h-[26rem] flex flex-col lg:flex-row w-full justify-evenly items-center px-4 md:px-12">
       
       <div className="text-center lg:text-left max-w-xl">
         <p className="font-bold text-2xl lg:text-5xl leading-tight text-black">
