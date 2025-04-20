@@ -44,3 +44,19 @@ html {
 .backgroundImage{
   background-image: url('../src/assets/register.png');
 }
+
+
+:root {
+  --primary-color: #202225;
+  --primary-dark: #292b2f;
+  --accent-color: rgb(0, 184, 147);
+  --deccent-color: rgb(0, 116, 93);
+  --bg-light: #2b2d31;
+  --bg-dark: #202225;
+  --text-color: #ffffff;
+  --border-color: rgba(64, 68, 75, 0.3);
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 6px 10px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.25);
+  --transition-speed: 0.25s;
+}
