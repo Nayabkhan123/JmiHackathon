@@ -37,7 +37,7 @@ export const Register = () => {
 
     async function changeUploadHandler(e) {
         const file = e.target.files;
-        if (file.length) {
+        if (file?.length) {
             const uploadImageCloudinary = await uploadImage(file[0]);
             setData((prev) => {
                 return {

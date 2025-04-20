@@ -21,7 +21,7 @@ const PostModal = ({ onClose, initialData }) => {
 
   async function changeUploadHandler(e){
       const file = e.target.files;
-      if(file.length){
+      if(file?.length){
           setLoadUpload(true)
           const uploadImageCloudinary = await uploadImage(file[0])
           setFormData((prev)=>{

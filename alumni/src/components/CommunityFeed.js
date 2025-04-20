@@ -39,7 +39,7 @@ export const CommunityFeed = () => {
         <div className="lg:w-[70%] bg-gray-800 rounded-xl h-[640px] mx-auto overflow-auto scrollbar-none p-4 space-y-6">
           {loading ? (
             <div className="text-center py-10 text-gray-400">Loading posts...</div>
-          ) : data.length === 0 ? (
+          ) : data?.length === 0 ? (
             <div className="text-center py-10 text-gray-400">No posts available</div>
           ) : (
             data.map((post) => (
@@ -62,7 +62,7 @@ export const CommunityFeed = () => {
                   <span className={`text-gray-300 whitespace-pre-line ${seemore ? "line-clamp-none" : "line-clamp-4"}`}>{post.content}</span>
                   <span className='cursor-pointer text-blue-400' onClick={(e)=>{e.preventDefault(); setSeeMore(!seemore)}}>
                     {
-                      post.content.length>100 && (seemore?("see less"):("...more"))
+                      post.content?.length>100 && (seemore?("see less"):("...more"))
                     }
                   </span>
                   <div>

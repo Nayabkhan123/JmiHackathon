@@ -55,7 +55,7 @@ const CommunityPage = () => {
 
       {loading ? (
         <p className="text-gray-400">Loading posts...</p>
-      ) : posts.length === 0 ? (
+      ) : posts?.length === 0 ? (
         <p className="text-gray-400">No posts yet. Be the first to share!</p>
       ) : (
         <div className="space-y-4">
