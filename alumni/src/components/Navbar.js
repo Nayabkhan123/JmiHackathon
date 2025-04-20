@@ -6,6 +6,8 @@ import backendUrl from '../common';
 import { toast } from 'react-toastify';
 import { setuserDetails } from '../redux/userSlice';
 import jamiaLogo from "../assets/jamiaLogo.webp"
+import userImage from "../assets/user.jpg"
+
 export default function Navbar() {
   const user = useSelector(state=>state?.user?.user)
   const [menu,setmenu] = useState(false);
@@ -35,34 +37,34 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-lg p-4">
       <div className='w-[80%] mx-auto flex items-center justify-between'>
-        <Link to={"/"} className='flex items-center '>
+        <Link to={"/"} className='flex items-center focus:outline-none'>
           <img
             src={jamiaLogo}
             className='w-16 '
           />
-          <p className="text-xl font-semibold">Alumni Connect</p>
+          <p className="text-xl font-semibold text-md">Alumni Connect</p>
         </Link>
         <div className='font-medium text-base flex gap-4 '>
           {/* <div className=''>
             <a href={"#communityFeed"}>Community</a>
             <div className='h-[1px] bg-blue-800'></div>
           </div> */}
-          <div>
+          <div className='hidden md:block'>
             <a
               href="#communityFeed"
               className="relative group"
             >
               Community
-              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-800 group-hover:w-full transition-all duration-300"></div>
+              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300"></div>
             </a>
           </div>
-          <div>
+          <div className='hidden sm:block'>
             <Link
               to="/alumni-directory"
               className="relative group"
             >
               Alumni Directory
-              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-800 group-hover:w-full transition-all duration-300"></div>
+              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300"></div>
             </Link>
           </div>
         </div>
@@ -73,7 +75,7 @@ export default function Navbar() {
           user?._id ? (
             <div className='flex gap-3'>
               <div className='relative cursor-pointer'>
-                <img src={user?.profilePic}
+                <img src={user?.profilePic || userImage}
                   onClick={()=>setmenu(!menu)}
                   className='h-11 w-11 rounded-full  z-0'/>
 
@@ -85,13 +87,13 @@ export default function Navbar() {
                 </div>)
               }
               </div>
-              <button className="ml-2 px-3 py-1 bg-blue-500 text-white rounded" onClick={handlelogout}>Logout</button>
+              <button className="hidden md:block ml-2 px-3 py-1 bg-accent text-white rounded" onClick={handlelogout}>Logout</button>
             </div>
           ) : 
           (
-            <div>
-              <Link to={'/login'} className="px-3 py-1">Login</Link>
-              <Link to={"/register"} className="ml-2 px-3 py-1 bg-blue-500 text-white rounded">Register</Link>
+            <div className='flex text-lg items-center justify-center'>
+              <Link to={'/login'} className="px-4 py-2">Login</Link>
+              <Link to={"/register"} className="hidden md:block ml-2 px-4 py-2 bg-accent text-white rounded">Register</Link>
           </div>
           )
         }

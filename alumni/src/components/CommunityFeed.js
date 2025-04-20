@@ -38,7 +38,7 @@ export const CommunityFeed = () => {
             <h3 className='font-bold text-3xl text-center'>Community Feed</h3>
             <div className='h-[1px] w-56 bg-black'></div>
         </div>
-        <div className='lg:w-[70%] bg-gray-200 h-[640px] mx-auto overflow-auto scrollbar-none'>
+        <div className='lg:w-[70%] bg-accent h-[640px] mx-auto overflow-auto scrollbar-none'>
             {
                 data.map((post)=>{
                     return (

@@ -54,12 +54,12 @@ export default function Directory() {
                           <h3 className='font-semibold text-xl'>{alum.name}</h3>
                           <p className='text-xs'>{alum.profession}</p>
                       </div>
-                      <div className='flex gap-2'>
+                      <div className='flex flex-col'>
                         <p className='text-base'>{alum.department}</p>
-                        <div>|</div>
+                        {/* <div>|</div> */}
                         <p className='text-base'>{alum.batch}</p>
                       </div>
-                      <p className='text-base'>{alum.location}</p>
+                      <p className='text-base line-clamp-1'>{alum.location}</p>
                   </div>
               </div>
             </div>

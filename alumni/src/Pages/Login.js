@@ -56,20 +56,21 @@ export const Login = () => {
     }
     console.log(data);
   return (
-    <section id='login' className='flex items-center h-[100%] justify-center'>
-            <div className='w-[80%] h-full hidden lg:flex'>
+    <section id='login' className='flex items-center h-[100%] justify-center mt-10 lg:m-0 lg:justify-between'>
+            <div className='w-[70%] h-[88vh] hidden lg:flex'>
                 <img src={banner}
                     className=''/>
             </div>
-            <div className='bg-gray-100 w-fit max-wlg flex flex-col py-6 rounded-2xl'>
-                <div className='w-32 my-6 mx-auto'>
+            <div className='bg-gray-100 lg:w-[30%] md:w-[70%] w-[90%] flex flex-col justify-center py-6 rounded-2xl'>
+                <div className='w-52 mix-blend-darken my-6 mx-auto'>
                     <img className='rounded-full' src={loginIcon}/>
                 </div>
                 <form className='grid px-10 gap-2' onSubmit={(event)=>submitHandler(event)}>
                     <div>
                         <label htmlFor='email'>Email:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none ' 
+                        <div className='flex border-2 outline-none'>
+                            <input 
+                            className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.email === "" ? (" focus:border-red-500") : ("focus:border-green-500")}`}
                             type='email' 
                             name='email' 
                             value={data.email}
@@ -80,14 +81,15 @@ export const Login = () => {
                     
                     <div>
                         <label htmlFor='password'>Password:</label>
-                        <div className='flex border-2 px-4 py-2 border-gray-500'>
-                            <input className='w-full h-full bg-transparent outline-none' 
+                        <div className='flex border-2 outline-none relative'>
+                            <input 
+                                className={`w-full h-full px-4 py-2 bg-transparent outline-none border-2 border-gray-500 ${data.password === "" ? (" focus:border-red-500") : ("focus:border-green-500")}`}
                                 type={showpassword?"text":"password"} 
                                 name='password' 
                                 value={data.password}
                                 placeholder='Enter Your Password'
                                 onChange={(event)=>changeHandler(event)}/>
-                            <span className='text-xl cursor-pointer' onClick={()=>setshowpassword(!showpassword)}>
+                            <span className='text-xl cursor-pointer absolute right-2 top-3' onClick={()=>setshowpassword(!showpassword)}>
                                 {
                                     showpassword?(<FaEyeSlash/>):(<FaEye/>)
                                 }
@@ -96,9 +98,9 @@ export const Login = () => {
                         <Link className='flex flex-row-reverse hover:underline hover:text-blue-700 text-sm' to="/forgot-password">Forgot Password</Link>
                     </div>
                     
-                    <button className='px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-700 transition-all duration-100 text-lg text-bold'>Login</button>
+                    <button className='px-4 py-2 rounded-xl bg-accent text-white hover:bg-deccent transition-all duration-50 text-lg text-bold'>Login</button>
                 </form>
-                <p className='text-sm px-10'>Dont't have account ? <Link to="/register" className='hover:underline text-blue-500 hover:text-blue-800'>Register</Link></p>
+                <p className='text-sm px-10'>Dont't have account ? <Link to="/register" className='hover:underline text-accent hover:text-blue-800'>Register</Link></p>
             </div>
             
     </section>
