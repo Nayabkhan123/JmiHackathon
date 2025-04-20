@@ -6,6 +6,7 @@ import { Register } from "../Pages/Register";
 import { AlumniDirectory } from "../Pages/AlumniDirectory";
 import PostForm from "../Pages/PostForm";
 import EditProfile from "../Pages/EditProfile";
+import CommunityPage from "../Pages/CommunityPage"; // assuming this is your full page
 
 const router =createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router =createBrowserRouter([
         {
             path:"edit-profile",
             element: <EditProfile/>
+        },
+        {
+            path:"community",
+            element: <CommunityPage/>
         },
         
        ] 

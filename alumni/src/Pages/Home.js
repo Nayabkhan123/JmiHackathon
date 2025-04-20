@@ -5,11 +5,12 @@ import { TotalAlumni } from '../components/TotalAlumni'
 import { CommunityFeed } from '../components/CommunityFeed'
 import { Footer } from '../components/Footer'
 import Navbar from '../components/Navbar'
+import CommunityPage from './CommunityPage'
 
 export const Home = () => {
   return (
     <div>
-        <main className="px-4 pb-4 flex flex-col gap-10">
+        <main className="bg-gray-900 flex flex-col gap-10">
             <Main/>
             <Directory />
             <TotalAlumni/>
@@ -19,3 +20,4 @@ export const Home = () => {
     </div>
   )
 }
+
