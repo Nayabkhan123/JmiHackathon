@@ -1,5 +1,6 @@
-const backendDomain = "http://localhost:8000/api";
-
+// const backendDomain = "http://localhost:8000/api";
+const backendDomain = `${process.env.BACKEND_URL}/api`
+console.log("first",process.env.BACKEND_URL)
 const backendUrl = {
     register: {
         url: `${backendDomain}/register`,
