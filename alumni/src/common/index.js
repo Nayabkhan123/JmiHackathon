@@ -1,5 +1,7 @@
 // const backendDomain = "http://localhost:8000/api";
-const backendDomain = `${process.env.BACKEND_URL}/api`
+// const backendDomain = `${process.env.BACKEND_URL}/api`
+const backendDomain = "https://alumni-connect-backend-seven.vercel.app/api"
+
 console.log("first",process.env.BACKEND_URL)
 const backendUrl = {
     register: {
