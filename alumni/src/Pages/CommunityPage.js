@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import PostCard from './PostCard';
 import PostModal from './PostModal';
+import backendUrl from '../common';
 
 const CommunityPage = () => {
   const currUser = useSelector((state) => state?.user?.user);
@@ -13,7 +14,7 @@ const CommunityPage = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/api/all-posts', { withCredentials: true });
+      const res = await axios.get(backendUrl.allposts.url, { withCredentials: true });
       setPosts(res.data.posts);
     } catch (err) {
       console.error('Error fetching posts', err);

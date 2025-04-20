@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { uploadImage } from '../helper.js/UploadImage';
+import { TiDelete } from 'react-icons/ti';
+import { GrCloudUpload } from 'react-icons/gr';
+import backendUrl from '../common';
 
 const PostModal = ({ onClose, initialData }) => {
   const currUser = useSelector(state => state?.user?.user); // Get current user from Redux state
@@ -10,23 +14,47 @@ const PostModal = ({ onClose, initialData }) => {
     authorName: currUser?.name || '',  // Auto-populate for new posts
     authorPic: currUser?.profilePic || '',  // Auto-populate for new posts
     profession: currUser?.profession || '',  // Auto-populate for new posts
+    postImage: initialData?.postImage || '',
   });
   const [loading, setLoading] = useState(false);
+  const [loadUpload, setLoadUpload] = useState(false);
 
+  async function changeUploadHandler(e){
+      const file = e.target.files;
+      if(file.length){
+          setLoadUpload(true)
+          const uploadImageCloudinary = await uploadImage(file[0])
+          setFormData((prev)=>{
+              return{
+                  ...prev,
+                  postImage: uploadImageCloudinary?.url
+              }
+          })
+          setLoadUpload(false)
+          console.log("upload image " , uploadImageCloudinary)
+      }
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  async function handleDeleteProduct(index){
+    setFormData((prev)=>{
+        return {
+            ...prev,
+            postImage:""
+        }
+    })
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       if (initialData?._id) {
         // If editing an existing post, send PUT request
-        await axios.put(`http://localhost:8000/api/edit-post/${initialData._id}`, formData, { withCredentials: true });
+        await axios.put(`${backendUrl.editPost.url}/${initialData._id}`, formData, { withCredentials: true });
       } else {
         // If creating a new post, send POST request
-        await axios.post('http://localhost:8000/api/create-post', formData, { withCredentials: true });
+        await axios.post(backendUrl.createPost.url, formData, { withCredentials: true });
       }
       onClose(true);  // Close the modal after success
     } catch (err) {
@@ -62,6 +90,44 @@ const PostModal = ({ onClose, initialData }) => {
             required
             className="w-full border border-gray-600 bg-gray-700 text-white rounded-md px-3 py-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+
+          {/* ImageUplaod */}
+        <label htmlFor='Image'>Upload Image</label>
+            <div className='flex flex-col gap-4'>
+                <div className='w-full flex justify-center items-center rounded border '>
+                    <label htmlFor='uploadImageInput'>
+                        <div className='text-slate-500 p-2 cursor-pointer gap-2 flex justify-center items-center flex-col'>
+                            <span className='text-4xl'><GrCloudUpload/></span>
+                            <p className='text-sm font-semibold'>{formData.postImage? "update" : "upload"} Image</p>
+                            <input id='uploadImageInput'
+                                    type='file'
+                                    className='hidden'
+                                    onChange={changeUploadHandler}/>
+                        </div>
+                    </label>
+                </div>
+                {
+                  loadUpload && <div className='text-center font-bold'>Please wait...</div>
+                }
+                {
+                    formData?.postImage && 
+                    <div className='flex w-[100%] items-center justify-center gap-2 overflow-x-auto flex-wrap'>
+                        {    
+                               
+                            <div className='relative group cursor-pointer'>
+                                <img src={formData?.postImage} 
+                                alt='userImage' 
+                                className='bg-slate-100 border min-h-full min-w-48'
+                                />
+                                <div className='absolute top-0 right-0 w-fit text-red-600 bg-white rounded-full transition-all cursor-pointer hidden group-hover:block'
+                                    onClick={(e)=>handleDeleteProduct(e)}>
+                                    <TiDelete size={30}/>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
 
           {/* Hidden Fields for Author Info - Automatically populated for new posts */}
           <input

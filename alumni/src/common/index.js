@@ -33,14 +33,35 @@ const backendUrl = {
         url: `${backendDomain}/edit-profile`,
         method: "put"
     },
-    createPost:{
-        url: `${backendDomain}/create-post`,
-        method: "post"
-    },
+    
     otpVerify:{
         url: `${backendDomain}/otpverify`,
         method: "post"
     },
+    allposts:{
+        url: `${backendDomain}/all-posts`,
+        method: "get"
+    },
+    createPost:{
+        url: `${backendDomain}/create-post`,
+        method: "post"
+    },
+    deletePost:{
+        url: `${backendDomain}/delete-post`,
+        method: "delete"
+    },
+    editPost:{
+        url: `${backendDomain}/edit-post`,
+        method: "put"
+    },
+    editPost:{
+        url: `${backendDomain}/edit-post`,
+        method: "put"
+    },
+    
+
+    
+    
     
 
 }

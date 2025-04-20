@@ -1,13 +1,14 @@
 import React from 'react';
 import { PiStudentBold } from "react-icons/pi";
-
+import {ImBooks} from 'react-icons/im'
+import {MdEmojiEvents} from 'react-icons/md'
 export const TotalAlumni = () => {
   return (
     <div className="bg-gray-900 w-full py-12 px-4 md:px-16">
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center text-white">
         <StatCard icon={<PiStudentBold className="text-blue-400 text-5xl mb-3" />} label="Alumni" value="1000+" />
-        <StatCard icon={<PiStudentBold className="text-green-400 text-5xl mb-3" />} label="Departments" value="5+" />
-        <StatCard icon={<PiStudentBold className="text-purple-400 text-5xl mb-3" />} label="Events" value="200+" />
+        <StatCard icon={<ImBooks  className="text-green-400 text-5xl mb-3" />} label="Departments" value="5+" />
+        <StatCard icon={<MdEmojiEvents className="text-purple-400 text-5xl mb-3" />} label="Events" value="200+" />
       </div>
     </div>
   );

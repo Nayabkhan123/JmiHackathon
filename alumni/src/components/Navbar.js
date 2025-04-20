@@ -27,21 +27,21 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md border-b border-blue-500 p-4 sticky top-0 z-50">
+    <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow-md border-b border-accent p-4 sticky top-0 z-50">
       <div className="w-[80%] mx-auto flex items-center justify-between">
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={jamiaLogo} className="sm:w-20 w-10 focus:outline-none" />
+          <img src={jamiaLogo} className="sm:w-16 w-10 focus:outline-none" />
           <p className="text-2xl font-bold tracking-wide">Alumni Connect</p>
         </Link>
 
         <div className="font-medium text-base  gap-6 hidden md:flex">
           <Link to={'/community'} className="relative group">
             Community
-            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 group-hover:w-full transition-all duration-300"></div>
+            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300"></div>
           </Link>
           <Link to="/alumni-directory" className="relative group">
             Alumni Directory
-            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-blue-400 group-hover:w-full transition-all duration-300"></div>
+            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300"></div>
           </Link>
         </div>
 
@@ -68,7 +68,7 @@ export default function Navbar() {
               )}
             </div>
             <button
-              className=" hidden md:block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+              className=" hidden md:block px-4 py-2 bg-accent hover:bg-deccent text-white rounded"
               onClick={handlelogout}
             >
               Logout
@@ -76,12 +76,12 @@ export default function Navbar() {
           </div>
         ) : (
           <div className="flex items-center gap-3">
-            <Link to={'/login'} className="hover:underline">
+            <Link to={'/login'} className="border-2 px-4 py-2 rounded hover:bg-accent border-accent">
               Login
             </Link>
             <Link
               to={"/register"}
-              className="hidden md:block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+              className="hidden md:block px-4 py-2 bg-accent hover:bg-deccent text-white rounded"
             >
               Register
             </Link>

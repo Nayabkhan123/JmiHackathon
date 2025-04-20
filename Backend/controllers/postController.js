@@ -2,7 +2,7 @@ const Post = require('../models/Post');
 
 const createPost = async (req, res) => {
     try {
-        const { title, content, authorName, authorPic, profession } = req.body;
+        const { title, content, authorName, authorPic, profession,postImage } = req.body;
 
         if (!title || !content || !authorName) {
             return res.status(400).json({
@@ -17,6 +17,7 @@ const createPost = async (req, res) => {
             authorName,
             authorPic,
             profession,
+            postImage
         });
 
         const savedPost = await newPost.save();
@@ -54,7 +55,7 @@ const getAllPosts = async (req, res) => {
 const editPost = async (req, res) => {
     try {
         const postId = req.params.id;
-        const { title, content, authorPic, profession } = req.body;
+        const { title, content, authorPic, profession,postImage } = req.body;
 
         const updatedPost = await Post.findByIdAndUpdate(
             postId,
@@ -63,6 +64,7 @@ const editPost = async (req, res) => {
                 ...(content && { content }),
                 ...(authorPic && { authorPic }),
                 ...(profession && { profession }),
+                ...(postImage && { postImage }),
                 updatedAt: new Date(),
             },
             { new: true }

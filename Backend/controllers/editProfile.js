@@ -9,7 +9,7 @@ const editProfile = async (req, res) => {
       department,
       batch,
       location,
-      profilePic
+      profilePic,
     } = req.body;
 
     // Update fields

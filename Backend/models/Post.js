@@ -17,6 +17,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         default: '', // can be blank if user doesn't have one
     },
+    postImage: {
+        type: String,
+        default: '', // can be blank if user doesn't have one
+    },
     profession: {
         type: String,
         default: '',
