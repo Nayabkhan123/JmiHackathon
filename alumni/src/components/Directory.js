@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import backendUrl from '../common';
+import { Link } from 'react-router-dom';
 
 export default function Directory() {
   const [totalAlumni, setTotalAlumni] = useState([]);
@@ -25,13 +26,13 @@ export default function Directory() {
 
   return (
     <div className="bg-gray-900 text-white flex flex-col gap-6 overflow-x-scroll p-6 scrollbar-none scrollbar-custom">
-      <h1 className="text-3xl font-bold">Our Alumni</h1>
+      <Link to={'/alumni-directory'} className="text-3xl font-bold">Our Alumni</Link>
 
       <div className="flex gap-6 pb-4">
         {totalAlumni?.map((alum) => (
           <div
             key={alum._id}
-            className="min-w-56 bg-gray-800 rounded-xl p-4 shadow-lg hover:scale-105 hover:shadow-blue-500/30 transition-transform duration-300"
+            className="min-w-56  bg-gray-800 rounded-xl p-4 shadow-lg hover:scale-105 hover:shadow-[0_3px_10px_rgba(59,130,246,0.5)] transition-transform duration-300"
           >
             <div className="mb-3">
               <img

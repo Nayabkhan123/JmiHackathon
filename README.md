@@ -15,6 +15,8 @@ The project consists of two main parts:
 - Alumni directory to search and browse alumni.
 - Community feed to create, view, edit, and delete posts.
 - Responsive UI with navigation and notifications.
+- Image upload using Cloudinary for profile pictures and post images.
+- Optimized search and input fields using debounce to reduce unnecessary API calls.
 
 ### Backend
 - RESTful API built with Express.js.

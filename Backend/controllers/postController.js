@@ -56,15 +56,15 @@ const editPost = async (req, res) => {
     try {
         const postId = req.params.id;
         const { title, content, authorPic, profession,postImage } = req.body;
-
+        console.log("ksnennknk",postImage)
         const updatedPost = await Post.findByIdAndUpdate(
             postId,
             {
-                ...(title && { title }),
-                ...(content && { content }),
-                ...(authorPic && { authorPic }),
-                ...(profession && { profession }),
-                ...(postImage && { postImage }),
+                ...(title !== undefined && { title }),
+                ...(content !== undefined && { content }),
+                ...(authorPic !== undefined && { authorPic }),
+                ...(profession !== undefined && { profession }),
+                ...(postImage !== undefined && { postImage }),
                 updatedAt: new Date(),
             },
             { new: true }

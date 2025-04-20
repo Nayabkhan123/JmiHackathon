@@ -94,7 +94,7 @@ const PostModal = ({ onClose, initialData }) => {
           {/* ImageUplaod */}
         <label htmlFor='Image'>Upload Image</label>
             <div className='flex flex-col gap-4'>
-                <div className='w-full flex justify-center items-center rounded border '>
+                <div className={`w-full justify-center items-center rounded border ${formData?.postImage ? "hidden":"flex"}`}>
                     <label htmlFor='uploadImageInput'>
                         <div className='text-slate-500 p-2 cursor-pointer gap-2 flex justify-center items-center flex-col'>
                             <span className='text-4xl'><GrCloudUpload/></span>
@@ -111,7 +111,7 @@ const PostModal = ({ onClose, initialData }) => {
                 }
                 {
                     formData?.postImage && 
-                    <div className='flex w-[100%] items-center justify-center gap-2 overflow-x-auto flex-wrap'>
+                    <div className='flex w-[100%] max-w-md max-h-72  items-center justify-center gap-2 overflow-x-auto flex-wrap'>
                         {    
                                
                             <div className='relative group cursor-pointer'>
