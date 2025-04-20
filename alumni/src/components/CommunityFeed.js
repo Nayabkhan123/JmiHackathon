@@ -30,27 +30,33 @@ export const CommunityFeed = () => {
             <h3 className='font-bold text-3xl text-center'>Community Feed</h3>
             <div className='h-[1px] w-56 bg-black'></div>
         </div>
-        <div className='lg:w-[70%] bg-gray-200 h-[640px] mx-auto overflow-auto scrollbar-none'>
-            {
-                data.map((post)=>{
-                    return (
-                        <div className='px-10 pt-10 flex gap-3 flex-col'>
-                            <div className='flex items-center gap-3'>
-                                <img src={post.userImage} 
+
+      <Link to="/community">
+        <div className="lg:w-[70%] bg-gray-800 rounded-xl h-[640px] mx-auto overflow-auto scrollbar-none p-4 space-y-6">
+          {loading ? (
+            <div className="text-center py-10 text-gray-400">Loading posts...</div>
+          ) : data.length === 0 ? (
+            <div className="text-center py-10 text-gray-400">No posts available</div>
+          ) : (
+            data.map((post) => (
+              <div key={post._id} className="border-b border-gray-600 pb-4 space-y-2">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={post.authorPic || 'https://via.placeholder.com/35'}
                                     width={35}
                                     height={35}
-                                    className='rounded-full'/>
-                                <p className='font-semibold'>{post.userName}</p>
+                    className="rounded-full border border-gray-500"
+                    alt="User"
+                  />
+                  <p className="font-semibold text-white">{post.authorName}</p>
                             </div>
                             <div>
-                                <p className='font-bold'>{post.postTitle}</p>
-                                <p className='line-clamp-6'>{post.postDescription}</p>
+                  <p className="font-bold text-lg text-blue-400">{post.title}</p>
+                  <p className="text-gray-300 line-clamp-6">{post.content}</p>
                             </div>
-                            <div className='h-[1px] bg-black'></div>
                         </div>
-                    )
-                })
-            }
+            ))
+          )}
         </div>
       </Link>
     </div>
