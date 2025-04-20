@@ -25,32 +25,40 @@ export const CommunityFeed = () => {
   }, []);
 
   return (
-    <div id='communityFeed' className='flex flex-col gap-4'>
-        <div className='w-full flex items-center justify-center flex-col'>
-            <h3 className='font-bold text-3xl text-center'>Community Feed</h3>
-            <div className='h-[1px] w-56 bg-black'></div>
-        </div>
-        <div className='lg:w-[70%] bg-gray-200 h-[640px] mx-auto overflow-auto scrollbar-none'>
-            {
-                data.map((post)=>{
-                    return (
-                        <div className='px-10 pt-10 flex gap-3 flex-col'>
-                            <div className='flex items-center gap-3'>
-                                <img src={post.userImage} 
-                                    width={35}
-                                    height={35}
-                                    className='rounded-full'/>
-                                <p className='font-semibold'>{post.userName}</p>
-                            </div>
-                            <div>
-                                <p className='font-bold'>{post.postTitle}</p>
-                                <p className='line-clamp-6'>{post.postDescription}</p>
-                            </div>
-                            <div className='h-[1px] bg-black'></div>
-                        </div>
-                    )
-                })
-            }
+    <div id="communityFeed" className="flex flex-col gap-6 p-6 bg-gray-900 text-white">
+      <div className="w-full flex items-center justify-center flex-col">
+        <Link to="/community" className="flex items-center gap-2">
+          <h3 className="font-bold text-3xl text-white">Community Feed</h3>
+        </Link>
+        <div className="h-[1px] w-56 bg-gray-500 mt-2" />
+      </div>
+
+      <Link to="/community">
+        <div className="lg:w-[70%] bg-gray-800 rounded-xl h-[640px] mx-auto overflow-auto scrollbar-none p-4 space-y-6">
+          {loading ? (
+            <div className="text-center py-10 text-gray-400">Loading posts...</div>
+          ) : data.length === 0 ? (
+            <div className="text-center py-10 text-gray-400">No posts available</div>
+          ) : (
+            data.map((post) => (
+              <div key={post._id} className="border-b border-gray-600 pb-4 space-y-2">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={post.authorPic || 'https://via.placeholder.com/35'}
+                    width={35}
+                    height={35}
+                    className="rounded-full border border-gray-500"
+                    alt="User"
+                  />
+                  <p className="font-semibold text-white">{post.authorName}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-lg text-blue-400">{post.title}</p>
+                  <p className="text-gray-300 line-clamp-6">{post.content}</p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </Link>
     </div>
