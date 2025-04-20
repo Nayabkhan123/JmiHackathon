@@ -42,7 +42,7 @@ export const CommunityFeed = () => {
           ) : data?.length === 0 ? (
             <div className="text-center py-10 text-gray-400">No posts available</div>
           ) : (
-            data.map((post) => (
+            data?.map((post) => (
               <div key={post._id} className="border-b border-gray-600 pb-4 p-4 space-y-2">
                 <div className="flex items-center gap-3">
                   <img

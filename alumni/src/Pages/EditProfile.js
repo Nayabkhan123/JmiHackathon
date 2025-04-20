@@ -99,7 +99,7 @@ const EditProfile = () => {
             { name: 'department', label: 'Department' },
             { name: 'batch', label: 'Batch' },
             { name: 'location', label: 'Location' },
-          ].map(({ name, label }) => (
+          ]?.map(({ name, label }) => (
             <div key={name}>
               <label className="block mb-1 font-medium text-gray-300">{label}</label>
               <input

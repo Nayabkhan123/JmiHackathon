@@ -59,7 +59,7 @@ const CommunityPage = () => {
         <p className="text-gray-400">No posts yet. Be the first to share!</p>
       ) : (
         <div className="space-y-4">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <PostCard
               key={post._id}
               post={post}

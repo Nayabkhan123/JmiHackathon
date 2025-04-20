@@ -28,7 +28,7 @@ export default function Directory() {
       <h1 className="text-3xl font-bold">Our Alumni</h1>
 
       <div className="flex gap-6 pb-4">
-        {totalAlumni.map((alum) => (
+        {totalAlumni?.map((alum) => (
           <div
             key={alum._id}
             className="min-w-56 bg-gray-800 rounded-xl p-4 shadow-lg hover:scale-105 hover:shadow-blue-500/30 transition-transform duration-300"
